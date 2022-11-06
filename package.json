@@ -5,8 +5,16 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "nodemon src/index.ts",
+		"build": "rimraf dist && tsc",
+		"ts.check": "tsc --project tsconfig.json",
+		"add-build": "git add dist",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
+	"pre-commit": [
+		"ts.check",
+		"build",
+		"add-build"
+	],
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
@@ -14,6 +22,7 @@
 		"@types/express": "^4.17.14",
 		"@types/node": "^18.11.9",
 		"nodemon": "^2.0.20",
+		"pre-commit": "^1.2.2",
 		"ts-node": "^10.9.1",
 		"typescript": "^4.8.4"
 	},
